@@ -54,7 +54,7 @@ class Bird():
       G.screen.blit(self.__dead, self.pos)
       
       if self.__delay_expl < len(self.__explosion) -1:
-         self.__delay_expl += 2 / G.FPS * G.DeltaTime
+         self.__delay_expl += 2 / G.FPS * G.MoltTime * G.delta_time
          
       if self.__delay_expl > 0 and self.__delay_expl < 0.5:
          self.addForce(forceY = 15, forceX = 30)
@@ -75,7 +75,7 @@ class Bird():
                            )
       
    def updateDelay(self):
-      self.__delay += 2 / G.FPS * G.DeltaTime
+      self.__delay += 2 / G.FPS * G.MoltTime * G.delta_time
       
       if int(self.__delay) > len(self.__image) - 1:
          self.__delay = 0
@@ -89,7 +89,7 @@ class Bird():
       self.__updateFall()
       
       if self.pos[1] > posy + rand.randint(5, 10) * int(G.MoltScreen) / G.Divider:
-         self.__fall_force = -rand.randint(5, 15) * int(G.MoltScreen) / G.DeltaTime / G.Divider
+         self.__fall_force = -rand.randint(5, 15) * int(G.MoltScreen) / G.MoltTime * G.delta_time / G.Divider
       
       self.updateDelay()
       
@@ -99,11 +99,11 @@ class Bird():
       
       
    def addForce(self, forceY: int = 0, forceX: int = 0):
-      self.__fall_force = -forceY * int(G.MoltScreen) / G. DeltaTime
-      self.__right_force = forceX * int(G.MoltScreen) / G. DeltaTime
+      self.__fall_force = -forceY * int(G.MoltScreen) / G. MoltTime * G.delta_time
+      self.__right_force = forceX * int(G.MoltScreen) / G. MoltTime * G.delta_time
    
    def __updateFall(self):
-      self.__fall_force += G.Bird_Fall * int(G.MoltScreen) / G.DeltaTime
+      self.__fall_force += G.Bird_Fall * int(G.MoltScreen) / G.MoltTime * G.delta_time
       
       
    def update(self):
@@ -147,7 +147,7 @@ class Tube():
       self.__color = "Red"
       self.__setMesh()
       
-      self.__speed = -G.Background_speed * int(G.MoltScreen) / G.DeltaTime
+      self.__speed = -G.Background_speed * int(G.MoltScreen) / G.MoltTime * G.delta_time
       self.flag_score = True
       
    def __getNewHeight(self):
@@ -221,8 +221,8 @@ class Background():
       self.__gameover = py.transform.scale(c, (c.get_width() * int(G.MoltScreen) / G.Divider, c.get_height() * int(G.MoltScreen) / G.Divider))
       
       
-      self.__speed_base = -G.Background_speed * int(G.MoltScreen) / G.DeltaTime
-      self.__speed_back = 0.3 * -G.Background_speed * int(G.MoltScreen) / G.DeltaTime
+      self.__speed_base = -G.Background_speed * int(G.MoltScreen) / G.MoltTime * G.delta_time
+      self.__speed_back = 0.3 * -G.Background_speed * int(G.MoltScreen) / G.MoltTime * G.delta_time
       
       diff = 50 * int(G.MoltScreen) / G.Divider
       

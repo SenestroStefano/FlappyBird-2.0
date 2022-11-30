@@ -1,11 +1,11 @@
 from __modules__ import *
 
-DeltaTime = 2
+MoltTime = 2
 MoltScreen = 3.15
 Divider = 1
 
 width, height = 490 * MoltScreen, 270 * MoltScreen
-FPS = 30 * DeltaTime
+FPS = 30 * MoltTime
 
 py.init()
 
@@ -32,3 +32,7 @@ with open('score.txt', 'r') as f:
    f_contest = f.readlines()
    Record = int(f_contest[1])
 f.close()
+
+
+delta_time = 1
+last_time = 0

@@ -2,6 +2,7 @@ from __modules__ import *
 import globals as G
 import classes
 
+
 def init():
    global background, bird, tubes
    global gameover_sound, jump_sound, record_sound, wtf_boom
@@ -90,6 +91,11 @@ def update():
    
 def render():
    G.screen.fill("#4ec0ca")
+   
+   
+   G.delta_time = time.time() - G.last_time
+   G.delta_time *= G.clock.get_fps()
+   G.last_time = time.time()
    
    background.update()
    background.Render(1)
